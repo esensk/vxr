@@ -9,6 +9,7 @@ verify_ssl = true
 bottle = "*"
 flake8 = "*"
 autopep8 = "*"
+mysql-connector-python = "*"
 
 [requires]
 python_version = "3.6"
