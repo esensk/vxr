@@ -10,6 +10,7 @@ bottle = "*"
 flake8 = "*"
 autopep8 = "*"
 mysql-connector-python = "*"
+docker-compose = "*"
 
 [requires]
 python_version = "3.6"
