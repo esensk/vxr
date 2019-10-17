@@ -123,7 +123,7 @@ class Dao:
             delete from
                 t_user
             where
-                username = "{username}"
+                public_id = "{public_id}"
                 and password = "{password}"
             """.format(public_id=public_id, password=password))
             self.__conn.commit()
