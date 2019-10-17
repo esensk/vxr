@@ -4,6 +4,7 @@ from bottle import route, run
 from bottle import request, template
 
 from settings import DB_PASSWORD
+from constants import IMAGE_DIR
 from dao import Dao
 
 
@@ -113,6 +114,26 @@ def do_delete():
         return template("user/do_delete", username=username, password=password)
 
     return template("user/failed_to_delete")
+
+
+@route("/image/upload")
+def upload():
+    return """
+        <form action="/image/upload" method="post" enctype="multipart/form-data">
+            <input type="submit" value"Upload"></br>
+            <input type="file" name="upload"></br>
+        </form>
+    """
+
+
+@route("/image/upload", method="POST")
+def do_upload():
+    upload = request.files.get("upload", "")
+    if not upload.filename.lower().endswith((".png", ".jpg", ".jpeg")):
+        return "File extenstion not allowed"
+
+    upload.save(IMAGE_DIR)
+    return "Upload OK. FilePath: %s%s" % (IMAGE_DIR, upload.filename)
 
 
 dao = Dao("mysql://docker:{pw}@localhost:3306/vxr".format(pw=DB_PASSWORD))
