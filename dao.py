@@ -31,8 +31,8 @@ class Dao:
         from
             t_user
         where
-            public_id = "${public_id}"
-            and password = "${password}"
+            public_id = "{public_id}"
+            and password = "{password}"
         """.format(public_id=public_id, password=password)
         )
 
@@ -53,7 +53,7 @@ class Dao:
             cur.execute("""
             insert into
                 t_user (public_id, password)
-            values("${public_id}", "${password}")
+            values("{public_id}", "{password}")
             """.format(public_id=public_id, password=password))
             self.__conn.commit()
             cur.close()
@@ -85,11 +85,11 @@ class Dao:
             update
                 t_user
             set
-                public_id = "${new_public_id}",
-                password = "${new_password}"
+                public_id = "{new_public_id}",
+                password = "{new_password}"
             where
-                public_id = "${public_id}"
-                and password = "${password}"
+                public_id = "{public_id}"
+                and password = "{password}"
             """.format(new_public_id=new_public_id, new_password=new_password,
                        public_id=public_id, password=password))
             self.__conn.commit()
@@ -113,8 +113,8 @@ class Dao:
             delete from
                 t_user
             where
-                username = "${username}"
-                and password = "${password}"
+                username = "{username}"
+                and password = "{password}"
             """.format(public_id=public_id, password=password))
             self.__conn.commit()
             cur.close()
