@@ -14,12 +14,27 @@ def index():
 
 @route("/user/register")
 def register():
-    pass
+    username = request.query.get("user")
+    password = request.query.get("pass")
+
+    username = "" if username is None else username
+    password = "" if password is None else password
+
+    return template("user/register", username=username, password=password)
 
 
 @route("/user/register", method="POST")
 def do_register():
-    pass
+    username = request.forms.get("username")
+    password = request.forms.get("password")
+
+    success = dao.insert_user(username, password)
+
+    if success:
+        return template("user/do_register",
+                        username=username, password=password)
+
+    return template("user/failed_to_register")
 
 
 @route("/user/login")
@@ -47,24 +62,58 @@ def do_login():
 
 @route("/user/update")
 def update():
-    pass
+    username = request.query.get("user")
+    password = request.query.get("pass")
+    new_username = request.query.get("new_user")
+    new_password = request.query.get("new_pass")
+
+    username = "" if username is None else username
+    password = "" if password is None else password
+    new_username = "" if new_username is None else new_username
+    new_password = "" if new_password is None else new_password
+
+    return template("user/update", username=username, password=password,
+                    new_username=new_username, new_password=new_password)
 
 
 @route("/user/update", method="POST")
 def do_update():
-    pass
+    username = request.forms.get("username")
+    password = request.forms.get("password")
+    new_username = request.forms.get("mew_username")
+    new_password = request.forms.get("new_password")
+
+    success = dao.update_user(username, password, new_username, new_password)
+
+    if success:
+        return template("user/do_update", username=username, password=password)
+
+    return template("user/failed_to_update")
 
 
 @route("/user/delete")
 def delete():
-    pass
+    username = request.query.get("user")
+    password = request.query.get("pass")
+
+    username = "" if username is None else username
+    password = "" if password is None else password
+
+    return template("user/delete", username=username, password=password)
 
 
 @route("/user/delete", method="POST")
 def do_delete():
-    pass
+    username = request.forms.get("username")
+    password = request.forms.get("password")
+
+    success = dao.delete_user(username, password)
+
+    if success:
+        return template("user/do_delete", username=username, password=password)
+
+    return template("user/failed_to_delete")
 
 
-dao = Dao(
-    "mysql://docker:{pw}@localhost:3306/vxr".format(pw=DB_PASSWORD))
+dao = Dao("mysql://docker:{pw}@localhost:3306/vxr".format(pw=DB_PASSWORD))
 run(host="localhost", port=8080, debug=True)

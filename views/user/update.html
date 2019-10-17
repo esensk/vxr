@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>てすと更新</title>
+  </head>
+  <body>
+    <form action="/user/update" method="post">
+      Username:
+      <input name="username" type="text" value="{{ username }}" /> Password:
+      <input name="password" type="password" value="{{ password }}" />
+      new Username:
+      <input name="new_username" type="text" value="{{ new_username }}" /> new
+      Password:
+      <input name="new_password" type="password" value="{{ new_password }}" />
+      <input value="Update" type="submit" />
+    </form>
+  </body>
+</html>

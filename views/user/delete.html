@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>てすと消去</title>
+  </head>
+  <body>
+    <form action="/user/delete" method="post">
+      Username:
+      <input name="username" type="text" value="{{ username }}" /> Password:
+      <input name="password" type="password" value="{{ password }}" />
+      <input value="Delete" type="submit" />
+    </form>
+  </body>
+</html>
