@@ -1,17 +1,27 @@
 # -*- coding:utf-8 -*-
 
 import mysql.connector
-import settings
+from urllib.parse import urlparse
 
 
 class Dao:
-    def __init__(self):
+    def __init__(self, url_str):
+        url = urlparse(url_str)
+
+        host = url.hostname
+        port = url.port
+        user = url.username
+        password = url.password
+        database = url.path[1:]
+
+        assert host and port and user and password and database
+
         self.__conn = mysql.connector.connect(
-            host='localhost',
-            port='3306',
-            user='docker',
-            password=settings.DB_PASSWORD,
-            database='vxr',
+            host=host,
+            port=port,
+            user=user,
+            password=password,
+            database=database,
         )
 
         self.__conn.ping(reconnect=True)
