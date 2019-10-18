@@ -12,6 +12,7 @@ autopep8 = "*"
 mysql-connector-python = "*"
 docker-compose = "*"
 python-dotenv = "*"
+pathlib = "*"
 
 [requires]
 python_version = "3.6"
