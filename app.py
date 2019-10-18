@@ -12,7 +12,7 @@ from dao import Dao
 
 @route("/")
 def top():
-    return template("top")
+    return template("top", username="")
 
 
 @route("/user/register")
