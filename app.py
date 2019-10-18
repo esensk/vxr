@@ -9,8 +9,8 @@ from dao import Dao
 
 
 @route("/")
-def index():
-    pass
+def top():
+    return template("top")
 
 
 @route("/user/register")
@@ -32,7 +32,7 @@ def do_register():
     success = dao.insert_user(username, password)
 
     if success:
-        return template("user/do_register",
+        return template("top",
                         username=username, password=password)
 
     return template("user/failed_to_register")
@@ -56,7 +56,7 @@ def do_login():
 
     result = dao.select_user(username, password)
     if len(result) > 0:
-        return template("user/do_login", username=username, password=password)
+        return template("top", username=username, password=password)
 
     return template("user/failed_to_login")
 

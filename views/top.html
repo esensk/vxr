@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>VXR</title>
+  </head>
+  <body>
+    % if username:
+    <p>Welcome {{ username }}</p>
+    % else:
+    <button onclick="location.href='/user/register'">とうろく</button>
+    <button onclick="location.href='/user/login'">ろぐいん</button>
+    % end
+  </body>
+</html>
