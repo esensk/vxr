@@ -1,5 +1,5 @@
 # Files or directories that is inherent this project.
-static/
+static/img/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -1,7 +1,9 @@
 # -*- coding:utf-8 -*-
 
+import pathlib
 from bottle import route, run
 from bottle import request, template
+from bottle import static_file
 
 from settings import DB_PASSWORD
 from constants import IMAGE_DIR
@@ -134,6 +136,27 @@ def do_upload():
 
     upload.save(IMAGE_DIR)
     return "Upload OK. FilePath: %s%s" % (IMAGE_DIR, upload.filename)
+
+
+@route("/static/img/<filename:re:.*\.(png|jpg|jpeg)>")
+def show_image(filename):
+    return static_file(filename, root="static/img/")
+
+
+@route("/static/css/<filename:re:.*\.css>")
+def set_style(filename):
+    return static_file(filename, root="static/css/")
+
+
+@route("/show")
+def show_images():
+    path_iter = pathlib.Path(IMAGE_DIR).iterdir()
+
+    images = []
+    for path in path_iter:
+        images.append(str(path))
+
+    return template("image/show", images=images)
 
 
 dao = Dao("mysql://docker:{pw}@localhost:3306/vxr".format(pw=DB_PASSWORD))
