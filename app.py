@@ -2,7 +2,7 @@
 
 import pathlib
 from bottle import route, run
-from bottle import request, template
+from bottle import request, template, redirect
 from bottle import static_file
 
 from settings import DB_PASSWORD
@@ -136,6 +136,33 @@ def do_upload():
 
     upload.save(IMAGE_DIR)
     return "Upload OK. FilePath: %s%s" % (IMAGE_DIR, upload.filename)
+
+
+@route("/image/effect/apply/<filename:re:.*\.(png|jpg|jpeg)>")
+def apply_effect(filename):
+    effector = request.query.get("effector")
+
+    return template("image/effect/apply", filename=filename, effector=effector)
+
+
+@route("/image/effect/apply/<filename:re:.*\.(png|jpg|jpeg)>", method="POST")
+def do_apply_effect(filename):
+    effector = request.forms.get("effector")
+
+    exec(effector)
+    return template("image/effect/applied", effector=effector,
+                    filename_1=filename, filename_2="applied.jpg")
+
+
+@route("/image/delete/<filename:re:.*\.(png|jpg|jpeg)>")
+def delete_effect_applied_image(filename):
+    path = pathlib.Path(filename)
+
+    assert path.exists()
+
+    path.unlink()
+
+    redirect("/show")
 
 
 @route("/static/img/<filename:re:.*\.(png|jpg|jpeg)>")

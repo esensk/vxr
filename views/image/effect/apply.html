@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>VXR</title>
+    <link rel="stylesheet" type="text/css" href="static/css/style.css" />
+  </head>
+  <body>
+    <img src="../../../static/img/{{ filename }}" class="show" />
+    <form action="/image/effect/apply/{{ filename }}" method="post">
+      <textarea name="effector">Effector</textarea>
+      <input value="適用" type="submit" />
+    </form>
+  </body>
+</html>
