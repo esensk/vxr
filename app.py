@@ -4,8 +4,7 @@ import pathlib
 import bottle
 from beaker.middleware import SessionMiddleware
 
-from settings import DB_PASSWORD
-from constants import IMAGE_DIR
+from constants import IMAGE_DIR, DB_PASSWORD
 from dao import Dao
 
 
