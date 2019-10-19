@@ -187,4 +187,4 @@ def show_images():
 
 
 dao = Dao("mysql://docker:{pw}@localhost:3306/vxr".format(pw=DB_PASSWORD))
-run(host="localhost", port=8080, debug=True)
+run(host="localhost", port=8080, debug=True, reloader=True)
