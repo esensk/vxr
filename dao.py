@@ -73,7 +73,7 @@ class Dao:
             raise e
 
     def __can_update_user(self, public_id, password):
-        return len(self.select_user(public_id, password)) == 0
+        return len(self.select_user(public_id, password)) > 0
 
     def update_user(self, public_id, password, new_public_id, new_password):
         assert not ((new_public_id is None or new_public_id == "") and
@@ -110,7 +110,7 @@ class Dao:
             raise e
 
     def __can_delete_user(self, public_id, password):
-        return len(self.select_user(public_id, password)) == 0
+        return len(self.select_user(public_id, password)) > 0
 
     def delete_user(self, public_id, password):
         if not self.__can_delete_user(public_id, password):
