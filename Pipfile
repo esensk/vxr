@@ -1,0 +1,21 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+bottle = "*"
+flake8 = "*"
+autopep8 = "*"
+mysql-connector-python = "*"
+docker-compose = "*"
+python-dotenv = "*"
+pathlib = "*"
+beaker = "*"
+opencv-python = "*"
+opencv-contrib-python = "*"
+
+[requires]
+python_version = "3.6"

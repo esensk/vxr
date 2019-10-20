@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>てすと登録</title>
+  </head>
+  <body>
+    <form action="/user/register" method="post">
+      Username:
+      <input name="username" type="text" value="{{ username }}" /> Password:
+      <input name="password" type="password" value="{{ password }}" />
+      <input value="Register" type="submit" />
+    </form>
+  </body>
+</html>
